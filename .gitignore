@@ -1,0 +1,14 @@
+# OS
+.DS_Store
+
+# Python caches
+__pycache__/
+*.pyc
+*.pyo
+
+# benchmark-policy-gap generated artifacts (large/noisy)
+work/
+out/logs/
+out/patches/
+benchmark-policy-gap-export.tgz
+data/nushell__nushell_dataset.jsonl

@@ -1,0 +1,15 @@
+instance_id,repo,pr_number,base_commit,gold_tests_ok,mut_unwrap_tests_ok,mut_unsafe_tests_ok,gold_fmt_ok,mut_unwrap_fmt_ok,mut_unsafe_fmt_ok,gold_clippy_ok,mut_unwrap_clippy_ok,mut_unsafe_clippy_ok,gold_unwrap_count,mut_unwrap_unwrap_count,mut_unsafe_unwrap_count,gold_unsafe_count,mut_unwrap_unsafe_count,mut_unsafe_unsafe_count,mut_unwrap_mutation_count,mut_unsafe_mutation_count,test_regression_mut_unwrap,test_regression_mut_unsafe,policy_violation_mut_unwrap,policy_violation_mut_unsafe
+nushell__nushell-10381,nushell/nushell,10381,a9a82de5c48b23958ead9d011765396d29217630,False,False,False,False,False,False,False,False,False,0,84,0,0,0,83,91,86,False,False,True,True
+nushell__nushell-10395,nushell/nushell,10395,d68c3ec89a8efa304246467f80140c59467ba94f,False,False,False,True,False,False,False,False,False,0,6,0,0,0,6,6,6,False,False,True,True
+nushell__nushell-10405,nushell/nushell,10405,bc7736bc9965d2df2e406f0e4fe9f4fe0d8c29f7,False,False,False,True,True,False,False,False,False,0,6,0,0,0,6,6,6,False,False,True,True
+nushell__nushell-10613,nushell/nushell,10613,afdb68dc7175b1c6b5f4ca8f6a20b55036cb2375,False,False,False,True,True,True,False,False,False,0,5,0,0,0,5,5,5,False,False,True,True
+nushell__nushell-10629,nushell/nushell,10629,399319476aa4decd7cced93488180d96e56bad64,False,False,False,True,True,True,False,False,False,0,0,0,0,0,0,0,0,False,False,True,True
+nushell__nushell-11169,nushell/nushell,11169,112306aab57c7e0d262bc0659fbfe79318d5bf46,False,False,False,True,True,True,False,False,False,0,4,0,0,0,4,4,4,False,False,True,True
+nushell__nushell-11292,nushell/nushell,11292,ecb3b3a364b3332ac9df51dbecd780f1f73e21e8,False,False,False,True,True,True,False,False,False,0,0,0,0,0,0,0,0,False,False,True,True
+nushell__nushell-11493,nushell/nushell,11493,6f59abaf4310487f7a6319437be6ec61abcbc3b9,False,False,False,True,True,True,False,False,False,0,0,0,0,0,0,0,0,False,False,True,True
+nushell__nushell-11672,nushell/nushell,11672,86dd045554c6e73de96b6bd1fcc0f0d5a0f4054b,False,False,False,True,True,True,False,False,False,0,13,0,0,0,13,13,13,False,False,True,True
+nushell__nushell-11948,nushell/nushell,11948,6e37ad0275cb23c5a8a933ba6a46a45d70f74910,False,False,False,True,True,True,False,False,False,0,1,0,0,0,1,1,1,False,False,True,True
+nushell__nushell-12118,nushell/nushell,12118,f695ba408aec1b67cb51ed1aa1180721986b56d8,False,False,False,True,False,False,False,False,False,0,3,0,0,0,3,3,3,False,False,True,True
+nushell__nushell-12901,nushell/nushell,12901,580c60bb821af25f838edafd8461bb206d3419f3,True,False,True,True,True,True,False,False,False,0,1,0,0,0,1,1,1,True,False,True,True
+nushell__nushell-13357,nushell/nushell,13357,5417c89387b67c3192ae9043473b556cd669ee15,True,False,False,True,False,False,False,False,False,1,53,1,0,0,47,52,47,True,True,True,True
+nushell__nushell-13870,nushell/nushell,13870,6e1e824473e15eba246e1c43704c5d88fa237a17,True,False,True,True,False,False,False,False,False,0,2,0,0,0,1,2,1,True,False,True,True

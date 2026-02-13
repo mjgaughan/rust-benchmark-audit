@@ -1,0 +1,5 @@
+scope,variant,total_instances,total_records,apply_ok_count,tests_ok_count,fmt_ok_count,clippy_ok_count,unwrap_total,unsafe_total,mutation_zero_count,mutation_nonzero_count,gold_tests_ok_count,test_regression_count,policy_violation_count
+overall,all,14,42,42,5,30,0,180,170,,,3,,
+variant,gold,14,14,14,3,13,0,1,0,,,3,,
+variant,mut_unwrap,14,14,14,0,9,0,178,0,3,11,3,3,14
+variant,mut_unsafe,14,14,14,2,8,0,1,170,3,11,3,1,14
