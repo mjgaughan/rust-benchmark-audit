@@ -1,0 +1,11 @@
+benchmark, instance_id, repo, safety_policy_url
+swe-bench_multilingual,nushell__nushell-1290,nushell/nushell,https://github.com/nushell/nushell/blob/main/devdocs/rust_style.md
+swe-bench_multilingual,nushell__nushell-12950,nushell/nushell,https://github.com/nushell/nushell/blob/main/devdocs/rust_style.md
+swe-bench_multilingual,nushell__nushell-13246,nushell/nushell,https://github.com/nushell/nushell/blob/main/devdocs/rust_style.md
+swe-bench_multilingual,nushell__nushell-13605,nushell/nushell,https://github.com/nushell/nushell/blob/main/devdocs/rust_style.md
+swe-bench_multilingual,nushell__nushell-13831,nushell/nushell,https://github.com/nushell/nushell/blob/main/devdocs/rust_style.md
+swe-bench_multilingual,	uutils__coreutils-6377,	uutils/coreutils,https://github.com/uutils/coreutils/blob/main/CONTRIBUTING.md
+swe-bench_multilingual,uutils__coreutils-6682,uutils/coreutils,https://github.com/uutils/coreutils/blob/main/CONTRIBUTING.md
+swe-bench_multilingual,uutils__coreutils-6690,uutils/coreutils,https://github.com/uutils/coreutils/blob/main/CONTRIBUTING.md
+swe-bench_multilingual,uutils__coreutils-6731,uutils/coreutils,https://github.com/uutils/coreutils/blob/main/CONTRIBUTING.md
+swe-bench_multilingual,uutils__coreutils-6575,uutils/coreutils,https://github.com/uutils/coreutils/blob/main/CONTRIBUTING.md

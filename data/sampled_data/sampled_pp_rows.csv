@@ -1,0 +1,4 @@
+benchmark, instance_id, repo, safety_policy_url
+swe-bench-plus-plus,aptos-labs__aptos-core-16152,aptos-labs/aptos-core,https://github.com/aptos-labs/aptos-core/blob/main/RUST_SECURE_CODING.md
+swe-bench-plus-plus,uutils__coreutils-8478,uutils/coreutils,https://github.com/uutils/coreutils/blob/main/CONTRIBUTING.md
+swe-bench-plus-plus,unicode-org__icu4x-6776,unicode-org/icu4x,https://github.com/unicode-org/icu4x/blob/main/documents/design/principles.md
