@@ -1,7 +1,7 @@
-# benchmark-policy-gap
+# Rust CodeGen Auditing Pipeline
 Disclaimer: Portions of the respository are vibecoded with FOO BAR.
 
-## Purpose
+## Purpose / Motivation
 This repository evaluates a policy gap in code-generation benchmark evaluation for Rust tasks.
 
 The concrete question in this implementation is:
@@ -18,52 +18,29 @@ For each instance, the pipeline runs three variants:
 - `mut_unwrap`: policy-violating mutation that introduces `unwrap/expect` patterns where possible
 - `mut_unsafe`: policy-violating mutation that introduces `unsafe` wrappers where possible
 
-For each variant, the pipeline records:
+For each patch variant, the pipeline records:
 - Patch apply success
 - Test outcome (`cargo test -q`)
 - Policy-check outcome (`fmt`, `clippy`, `unwrap/expect` count, `unsafe` count)
 - Logs and patch artifacts
 
-## Current Run Snapshot
-The latest local run produced:
-- `14` instances
-- `42` records (`14 x 3 variants`)
-- `out/summary_totals.csv` as aggregate view
-
-Current aggregate totals from `out/summary_totals.csv`:
-
-| scope | variant | total_instances | total_records | apply_ok_count | tests_ok_count | fmt_ok_count | clippy_ok_count | unwrap_total | unsafe_total |
-| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| overall | all | 14 | 42 | 42 | 5 | 30 | 0 | 180 | 170 |
-| variant | gold | 14 | 14 | 14 | 3 | 13 | 0 | 1 | 0 |
-| variant | mut_unwrap | 14 | 14 | 14 | 0 | 9 | 0 | 178 | 0 |
-| variant | mut_unsafe | 14 | 14 | 14 | 2 | 8 | 0 | 1 | 170 |
-
-Additional mutation stats:
-- `mut_unwrap` mutation applied in 11/14 instances, zero-change in 3/14
-- `mut_unsafe` mutation applied in 11/14 instances, zero-change in 3/14
-
 ## Project Layout
 ```text
 benchmark-policy-gap/
   data/
-    nushell__nushell_dataset.jsonl
-    multi_swe_bench_nushell_rows.csv
-    instances.jsonl
-  out/
-    results.jsonl
-    results.csv
-    summary_by_instance.csv
-    summary_totals.csv
-    logs/
-    patches/
-  work/
-    repos/
-    cargo-target/
-  scripts/
+    instance and summary data frames of manually-filtered Rust rows within popular CodeGen benchmarks
+  pipeline_scripts/
+    0_data construction/
+      scripts for the construction of input data sets
+    1_patch_mutate_and_eval/
+      scripts for mutating code patches and evaluating their correctness
+    2_analysis_runs_and_summary/
+      batching pipeline for evaluating different metrics of benchmark instances
+  results/
+    output statistics from analysis pipeline
 ```
 
-## Pipeline Details
+## TODO: Pipeline Details
 1. `extract_instances.py`
 - Reads target `instance_id` values from the CSV slice.
 - Extracts matching rows from benchmark JSONL.
@@ -99,7 +76,7 @@ benchmark-policy-gap/
 - `summarize_results.py` -> `out/summary_by_instance.csv`
 - `summarize_totals.py` -> `out/summary_totals.csv`
 
-## NL Policy To Executable Checks
+## NL Policy To Executable Checks (TODO: manual update of policy executables?)
 The policy text in `nushell` docs is operationalized into machine-checkable proxies:
 - `fmt` policy proxy: `cargo fmt --check`
 - lint/quality policy proxy: `cargo clippy -D warnings`
@@ -130,30 +107,6 @@ python scripts/summarize_results.py \
 python scripts/summarize_totals.py \
   --results-jsonl out/results.jsonl \
   --out-csv out/summary_totals.csv
-```
-
-## Export/Handoff Guide
-Minimum files to share with a collaborator:
-- `README.md`
-- `out/summary_totals.csv`
-- `out/summary_by_instance.csv`
-- `out/results.csv`
-- `out/results.jsonl`
-
-Optional (for traceability/debugging):
-- `out/logs/`
-- `out/patches/`
-
-Create one archive:
-```bash
-tar -czf benchmark-policy-gap-export.tgz \
-  README.md \
-  out/summary_totals.csv \
-  out/summary_by_instance.csv \
-  out/results.csv \
-  out/results.jsonl \
-  out/logs \
-  out/patches
 ```
 
 ## Limitations
