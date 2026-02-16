@@ -1,5 +1,5 @@
 ## TODO
-- [ ] Integrate SWE-bench evaluation harness for benchmark-authentic correctness checks (Matt)
+- [x] Integrate SWE-bench evaluation harness for benchmark-authentic correctness checks (Matt)
 - [ ] Unify filtered data sets with at least benchmark/instanceID/patch_diff/augmentation/tests/etc. 
 - [ ] Refactor analysis pipeline following repo restructuring
 - [ ] Aggregate selected rows from all three benchmarks into one dataframe for analysis 
