@@ -1,3 +1,13 @@
+## TODO
+- [ ~ ] Integrate SWE-bench evaluation harness for benchmark-authentic correctness checks (Matt)
+- [ ] Refactor analysis pipeline following repo restructuring
+- [ ] Aggregate selected rows from all three benchmarks into one dataframe for analysis 
+- [ ] Add mutation fallback to force non-zero mutation count for every instance.
+- [ ] Extend policy encodings beyond `unwrap/expect` and `unsafe` to additional project-specific constraints.
+  - [ ] Double-check the current policy encodings 
+  - [ ] See if it makes sense to add in verification analysis?
+
+  
 # Rust CodeGen Auditing Pipeline
 Disclaimer: Portions of the respository are vibecoded with FOO BAR.
 
@@ -113,8 +123,3 @@ python scripts/summarize_totals.py \
 - Test execution currently uses local `cargo test`, not the official Multi-SWE-bench docker harness.
 - Policy checks are proxies and heuristics, not complete formalization of all prose policy constraints.
 - `clippy_ok_count` is 0 across variants in this environment; this should be interpreted as strict `-D warnings` pressure, not necessarily mutation-specific regressions.
-
-## Next Improvements
-- Integrate official Multi-SWE-bench harness for benchmark-authentic pass/fail.
-- Add mutation fallback to force non-zero mutation count for every instance.
-- Extend policy encodings beyond `unwrap/expect` and `unsafe` to additional project-specific constraints.
