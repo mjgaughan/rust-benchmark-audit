@@ -1,0 +1,104 @@
+nushell/nushell
+    - policy: https://github.com/nushell/nushell/blob/main/devdocs/rust_style.md
+        1. L20 "panicking is not an allowed error handling strategy for anything that could be triggered by user input OR behavior of the outside system."
+        2. L23 "All `unsafe` uses should include `// SAFETY:` comments explaining how the invariants are upheld and thus alerting you what to watch out for when making a change."
+        3. L30 no removal of checks to increase efficiency
+    - measurement:
+        1. heuristic diff check for inclusion of "panic!" or "unwrap()" --- (more advanced way of checking trigger events?)
+        2. heuristic diff-level checks for "unsafe"; looking for corresponding explanatory comment (if so, classification of upheld invariants?)
+        3. heuristic diff-check for removal of existing bounds and memory checks 
+    - rationale: 
+        1. panicking is invoked by panic syntax 
+        2. explicit restriction on unsafe uses -> explanatory comment 
+        3. removal of existing bounds and memory checks if benchmark is performance-based?
+
+uutils/coreutils
+    - policy: https://github.com/uutils/coreutils/blob/main/CONTRIBUTING.md
+        1. L125 "This means that we should never `panic!`. Therefore, you should avoid using `.unwrap()` and `panic!`."
+        2. L126 "Sometimes the use of `unreachable!` can be justified with a comment explaining why that code is unreachable."
+        3. L134 "Avoid therefore `std::process::exit` and similar functions which exit the program early."
+        4. L140 "We generally only accept `unsafe` for FFI, with very few exceptions."
+        5. L145 "annotate the calls with `// SAFETY:` comments explaining why the use of `unsafe` is sound."
+    - measurement: 
+        1. token diff-check for 'panic!' and 'unwrap()'
+        2. diff-check for 'unreachable' and corresponding explanatory comment 
+        3. heuristic diff-check for any function which exit the program early
+        4. classification of whether patch is for FFI -> token diff-check for 'unsafe'
+        5. token diff check for 'unsafe' and search for '//SAFETY' comment
+    - rationale: 
+        1. policy states that panicking is never allowed 
+        2. unreachable is acceptable iff corresponding explanation 
+        3. policy states that early exits are never allowed 
+        4. policy: unsafe only used in FFI
+        5. policy: unsafe only used with corresponding //SAFETY comment
+
+aptoslabs/aptoscore
+    - policy: 
+    https://github.com/aptos-labs/aptos-core/blob/main/RUST_SECURE_CODING.md
+        1. L24 "Aptos **enforces** Clippy during automated testing with additional rules"
+        2. L57 "Never use `unsafe` blocks unless as a last resort."
+        3. L57 re: unsafe "Justify their use in a comment, detailing how the code is effectively safe to deploy."
+        4. L141 "Avoid using `std::mem::forget` in secure development, or any other function that leaks the memory."
+    https://github.com/aptos-labs/aptos-core/blob/main/RUST_CODING_STYLE.md
+        5. L159 re: concurrent types "Good practices (such as those in the examples mentioned) avoid exposing synchronization primitives externally (e.g. `Mutex`, `RwLock`) and document the method semantics and invariants clearly."
+        6. L182 `unwrap()` - Unwrap should only be used for test code. For all other use cases, prefer `expect()`. 
+        7. L191 "we generally try to avoid using a large number of generic type parameters."
+    - measurement: 
+        1. L26 "Clippy with Aptos-specific configuration can be run locally via `cargo xclippy`"
+        2. token diff-check for unsafe, (check if alternative solutions are possible? if GS patch does not have unsafe then we know safe solution possible)
+        3. token diff-check for unsafe iff explanatory comment 
+        4. token diff-check for `std::mem::forget` `vec::Drain` `Rc` `thread::scoped::JoinGuard`
+        5. token diff-check for `Mutex`, `RwLock` when external (?)
+        6. token diff-check `unwrap()`; acceptable iff test 
+        7. TODO (not sure right now how to check for generic type parameters, need to read more Rust)
+    - rationale: 
+        1. checking aptos-specific formatting conventions with project-specified tool 
+        2. check if there can be safe option for unsafe code 
+        3. policy: unsafe only used with corresponding //SAFETY comment
+        4. folllowing https://doc.rust-lang.org/nomicon/leaking.html to search for functions which leak memory
+        5. policy implies that good practices re: concurrent types avoid the use of `Mutex`, `RwLock` for external code
+        6. policy: unwrap can only be used in /test/
+        7. TODO
+
+unicode_org/icu4x 
+    - policy:
+    https://github.com/unicode-org/icu4x/blob/main/documents/design/principles.md
+        1. L15 "Unsafe code should be avoided in the core library"
+        2. L15 re: unsafe "if it must be used, it must be reviewed by a Rust expert and have an appropriate safety comment."
+        3. L21 "The core icu4x library (the `icu` crate and all of its direct and indirect dependencies, not including dev-dependencies) should be `#[no_std]`, but may use the `alloc` crate."
+    https://github.com/unicode-org/icu4x/blob/main/documents/process/style_guide.md
+        4. L164 "Pass and return fundamental type by value where possible :: required"
+        5. L647 "All data structs that can be passed through the DataProvider pipeline must support *zero-copy deserialization:*...This means that if the type involves variable-length data like strings, vectors, and maps, it must use a zero-copy type backed by a byte buffer to represent them."
+        6. L738 "Where Result is needed, use IcuResult<T> :: required"
+        7. L788 "Call non-panicking data access APIs whenever data is not guaranteed to be safe."
+        8. L824 "Use panicking methods only when the input has been explicitly checked to be correct."
+        9. L861 "You should return an error result if the user's input is too big and may cause integer overflow."
+        10. L912 "Enforced by the workspace-level `clippy::exhaustive_structs, clippy::exhaustive_enums` lints so that our types default to being `#[non_exhaustive]`."
+        11. L926 "`#[allow()]`s may be added, in cases where: The panic will only occur if fundamental invariants of the codebase are invalidated. The API is clearly documented to be a panicky one and is not transitively used in other non-documented-as-panicky APIs; The panic would only occur due to an invalidation of an API that is checked _very nearby_;The code is pure test code."
+    - measurement: 
+        1. diff-check for 'unsafe' in the `icu` crate
+        2. diff-check for unsafe and corresponding \\SAFETY comment
+        3. check for import of standard library
+        4. iff fundamental data type, check for passing by pointer (syntax search)
+        5. iff DataProvider pipeline, check if data struct handles variable-length data.  if so, check if vector enforces zero-copy deserialization
+        6. token diff-check for Result<T> 
+        7. whether data checked -> check for list of non-panicking data access APIs from L788 of style_guide
+        8. token diff-check for panic! or unwrap() and evaluate whether value has been previously checked 
+        9. check if user-facing function checks function arguments
+        10. clippy 
+        11. token diff-check for allow, then check for specified acceptable cases
+    - rationale: 
+        1. policy: no unsafe in crate 
+        2. policy: if unsafe, need comment 
+        3. policy: no standard library in crate 
+        4. policy: pass by value not by reference 
+        5. if in the DataProvider pipeline, restrictions on struct type 
+        6. policy: swapping Result<t> for IcuResult<t>
+        7. check whether non-checked data is handled by unsafe APIs
+        8. check whether non-checked data is handled by panicky functions 
+        9. check whether user inputs are checked 
+        10. clippy enforced rules 
+        11. check wether allow is used, if so, does the usage violate one of the four acceptance criteria
+
+
+
