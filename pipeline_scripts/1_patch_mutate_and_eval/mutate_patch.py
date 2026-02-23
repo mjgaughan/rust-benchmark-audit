@@ -64,6 +64,45 @@ def _mutate_unsafe_line(line: str) -> Tuple[str, bool]:
     return line, False
 
 
+def _fallback_comment_mutation(lines: list[str], mode: str) -> bool:
+    current_file = None
+    if mode == "unwrap":
+        marker = ".expect("
+        comment = " // mutation_fallback .expect("
+    elif mode == "unsafe":
+        marker = "unsafe"
+        comment = " // mutation_fallback unsafe"
+    else:
+        return False
+
+    for idx, line in enumerate(lines):
+        if line.startswith("+++ b/"):
+            current_file = line[len("+++ b/") :].strip()
+            if current_file == "/dev/null":
+                current_file = None
+            continue
+
+        if not line.startswith("+") or line.startswith("+++"):
+            continue
+        if not current_file or not current_file.endswith(".rs"):
+            continue
+
+        newline = "\n" if line.endswith("\n") else ""
+        body = line[1:-1] if newline else line[1:]
+        stripped = body.strip()
+        if not stripped:
+            continue
+        if stripped.startswith("//"):
+            continue
+        if marker in body:
+            continue
+
+        lines[idx] = "+" + body + comment + newline
+        return True
+
+    return False
+
+
 def mutate_patch_text(patch_text: str, mode: str) -> Tuple[str, int]:
     lines = patch_text.splitlines(keepends=True)
     mutated = []
@@ -79,6 +118,9 @@ def mutate_patch_text(patch_text: str, mode: str) -> Tuple[str, int]:
         mutated.append(new_line)
         if changed:
             count += 1
+
+    if count == 0 and _fallback_comment_mutation(mutated, mode):
+        count = 1
 
     return "".join(mutated), count
 

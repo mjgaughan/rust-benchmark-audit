@@ -1,8 +1,11 @@
 import pandas as pd 
+from pathlib import Path
+
+DATA_DIR = Path(__file__).resolve().parent
 # load the three data sets in sampled_data
-multisb_sample = pd.read_csv("manually_sampled_data/sampled_multisb_rows.csv")
-swepp_sample = pd.read_csv("manually_sampled_data/sampled_pp_rows.csv")
-sbmulti_sample = pd.read_csv("manually_sampled_data/sampled_sbmulti_rows.csv")
+multisb_sample = pd.read_csv(DATA_DIR / "manually_sampled_data/sampled_multisb_rows.csv")
+swepp_sample = pd.read_csv(DATA_DIR / "manually_sampled_data/sampled_pp_rows.csv")
+sbmulti_sample = pd.read_csv(DATA_DIR / "manually_sampled_data/sampled_sbmulti_rows.csv")
 
 # Strip whitespace from column names
 multisb_sample.columns = multisb_sample.columns.str.strip()
@@ -17,9 +20,9 @@ print(f"Unique benchmarks: {unique_benchmarks}\n")
 
 # Map benchmark names to their parquet files
 benchmark_file_map = {
-    "swe-bench_plus-plus": "benchmark-sets/20260218_swe-bench_plus-plus.parquet",
-    "swe-bench_multilingual": "benchmark-sets/20260218_swe-bench_multilingual.parquet",
-    "multi-swe-bench": "benchmark-sets/20260218_multi-swe-bench_nushell.jsonl"
+    "swe-bench_plus-plus": DATA_DIR / "benchmark-sets/20260218_swe-bench_plus-plus.parquet",
+    "swe-bench_multilingual": DATA_DIR / "benchmark-sets/20260218_swe-bench_multilingual.parquet",
+    "multi-swe-bench": DATA_DIR / "benchmark-sets/20260218_multi-swe-bench_nushell.jsonl"
 }
 
 # for each unique benchmark, look up instance_ids and pull out rows from the benchmark files
@@ -37,9 +40,9 @@ for benchmark in unique_benchmarks:
     # Load the corresponding benchmark file
     file_path = benchmark_file_map.get(benchmark)
     if file_path:
-        if file_path.endswith('.parquet'):
+        if str(file_path).endswith('.parquet'):
             benchmark_data = pd.read_parquet(file_path)
-        elif file_path.endswith('.jsonl'):
+        elif str(file_path).endswith('.jsonl'):
             benchmark_data = pd.read_json(file_path, lines=True)
         else:
             print(f"Unsupported file format for {benchmark}")
@@ -79,6 +82,6 @@ if all_matching_rows:
     print(unified_df.head())
     print("\nRows per benchmark:")
     print(unified_df['source_benchmark'].value_counts())
-    unified_df.to_csv("20260218_unified_sample.csv", index=False)
+    unified_df.to_csv(DATA_DIR / "20260218_unified_sample.csv", index=False)
 else:
     print("No matching rows found!")

@@ -6,9 +6,16 @@ import argparse
 import json
 import os
 import subprocess
+import sys
 import time
 from pathlib import Path
 from typing import Dict, Tuple
+
+# Allow imports from the refactored pipeline directory tree.
+SCRIPT_DIR = Path(__file__).resolve().parent
+PIPELINE_DIR = SCRIPT_DIR.parent
+sys.path.insert(0, str(PIPELINE_DIR / "1_patch_mutate_and_eval"))
+sys.path.insert(0, str(PIPELINE_DIR / "0_data_construction"))
 
 from apply_patch import apply_patch
 from mutate_patch import mutate_patch_text

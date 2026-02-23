@@ -89,6 +89,7 @@ def main() -> int:
         instance_ids = instance_ids[: args.limit]
 
     variants = [v.strip() for v in args.variants.split(",") if v.strip()]
+    run_one_script = (Path(__file__).resolve().parent / "run_one.py").resolve()
 
     if not args.append and args.out_jsonl.exists():
         args.out_jsonl.unlink()
@@ -103,7 +104,7 @@ def main() -> int:
             print(f"Running {instance_id} [{variant}]", flush=True)
             cmd = [
                 sys.executable,
-                "scripts/run_one.py",
+                str(run_one_script),
                 "--instance-id",
                 instance_id,
                 "--instances-jsonl",

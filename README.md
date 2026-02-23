@@ -1,8 +1,8 @@
 ## TODO
 - [x] Integrate SWE-bench evaluation harness for benchmark-authentic correctness checks (Matt)
 - [x] Unify filtered data sets with at least benchmark/instanceID/patch_diff/augmentation/tests/etc. 
-- [ ] Refactor analysis pipeline following repo restructuring
-- [ ] Add mutation fallback to force non-zero mutation count for every instance.
+- [x] Refactor analysis pipeline following repo restructuring
+- [x] Add mutation fallback to force non-zero mutation count for every instance.
 - [ ] Extend policy encodings beyond `unwrap/expect` and `unsafe` to additional project-specific constraints.
   - [ ] Double-check the current policy encodings 
   - [ ] See if it makes sense to add in verification analysis?
@@ -40,7 +40,7 @@ benchmark-policy-gap/
   data/
     instance and summary data frames of manually-filtered Rust rows within popular CodeGen benchmarks
   pipeline_scripts/
-    0_data construction/
+    0_data_construction/
       scripts for the construction of input data sets
     1_patch_mutate_and_eval/
       scripts for mutating code patches and evaluating their correctness
@@ -50,41 +50,66 @@ benchmark-policy-gap/
     output statistics from analysis pipeline
 ```
 
-## TODO: Pipeline Details
-1. `extract_instances.py`
-- Reads target `instance_id` values from the CSV slice.
-- Extracts matching rows from benchmark JSONL.
-- Normalizes schema fields into `data/instances.jsonl` (`base_commit` is resolved from known key variants, including `base.sha`).
+## Pipeline Details
+1. `data/sample_unification_script.py`
+- Merges manually sampled rows from the benchmark subsets into `data/20260218_unified_sample.csv`.
 
-2. `run_one.py`
+2. `pipeline_scripts/0_data_construction/build_instances_from_unified_csv.py`
+- Normalizes the unified CSV into `data/instances_unified.jsonl`.
+- Resolves `base_commit` from either `base_commit` or `base.sha` in `base`.
+- Resolves patch text from either `fix_patch` or `patch`.
+
+3. `pipeline_scripts/2_analysis_runs_and_summary/run_one.py`
 - Loads one normalized instance.
 - Materializes variant patch (`gold` or mutated).
 - Calls `apply_patch.py`, runs tests, runs policy checks.
-- Writes one JSON record to `out/results.jsonl`.
+- Writes one JSON record to `results/instance_results/results.jsonl`.
 
-3. `apply_patch.py`
+4. `pipeline_scripts/1_patch_mutate_and_eval/apply_patch.py`
 - Clones repo if needed into `work/repos/...`.
 - Resets and cleans working tree.
 - Checks out detached `base_commit`.
 - Applies unified diff patch.
 
-4. `policy_checks.py`
+5. `pipeline_scripts/0_data_construction/policy_checks.py`
 - Runs `cargo fmt --all -- --check`.
 - Runs `cargo clippy --all-targets --all-features -- -D warnings`.
 - Parses `git diff --unified=0` to count `unwrap/expect` and `unsafe` in added non-test/bench Rust lines.
 
-5. `mutate_patch.py`
+6. `pipeline_scripts/1_patch_mutate_and_eval/mutate_patch.py`
 - `mut_unwrap`: line-local replacement of `?`/call patterns to `unwrap()`.
 - `mut_unsafe`: wraps selected statements/let assignments in `unsafe { ... }`.
 - Keeps unified diff structure valid and newline-safe.
+- Includes fallback mutation logic so `mutation_count` is non-zero for mutants whenever a Rust added line is available.
 
-6. `run_batch.py`
+7. `pipeline_scripts/2_analysis_runs_and_summary/run_batch.py`
 - Iterates all instances and variants.
-- Produces `out/results.jsonl` and `out/results.csv`.
+- Produces `results/instance_results/results.jsonl` and `results/instance_results/results.csv`.
 
-7. Summarizers
-- `summarize_results.py` -> `out/summary_by_instance.csv`
-- `summarize_totals.py` -> `out/summary_totals.csv`
+8. Summarizers
+- `pipeline_scripts/2_analysis_runs_and_summary/summarize_results.py` -> `results/instance_results/summary_by_instance.csv`
+- `pipeline_scripts/2_analysis_runs_and_summary/summarize_totals.py` -> `results/summary_totals.csv`
+
+## Latest Status (2026-02-23)
+Implemented in this repo:
+- Refactor fixes so the pipeline runs correctly from the current `pipeline_scripts/` tree.
+- Mutation fallback to avoid zero-mutation mutant rows.
+- Unified-sample normalization script for mixed benchmark schemas.
+- Full unified-sample batch run completed and summarized.
+
+Latest run artifacts:
+- `data/instances_unified.jsonl` (27 normalized instances)
+- `results/instance_results/results.jsonl` (81 variant records)
+- `results/instance_results/summary_by_instance.csv`
+- `results/summary_by_instance.csv` (copy of the same file for convenience)
+- `results/summary_totals.csv`
+- `results/rq_baseline_overall.csv`
+- `results/rq_baseline_by_benchmark.csv`
+
+Baseline findings from the latest unified-sample run:
+- RQ1b (gold patch policy compliance): `7/27` compliant, `20/27` violating.
+- RQ2 (`mut_unwrap`): `3/27` test-passing mutants, and all `3` are policy-violating.
+- RQ2 (`mut_unsafe`): `8/27` test-passing mutants, and all `8` are policy-violating.
 
 ## NL Policy To Executable Checks (TODO: manual update of policy executables?)
 The policy text in `nushell` docs is operationalized into machine-checkable proxies:
@@ -101,25 +126,34 @@ Environment:
 - git
 - cargo
 
-Run end-to-end:
+Run end-to-end on the unified sample:
 ```bash
-python scripts/extract_instances.py \
-  --rows-csv data/multi_swe_bench_nushell_rows.csv \
-  --dataset-jsonl data/nushell__nushell_dataset.jsonl \
-  --out-jsonl data/instances.jsonl
+python data/sample_unification_script.py
 
-python -u scripts/run_batch.py --variants gold,mut_unwrap,mut_unsafe
+python pipeline_scripts/0_data_construction/build_instances_from_unified_csv.py \
+  --in-csv data/20260218_unified_sample.csv \
+  --out-jsonl data/instances_unified.jsonl
 
-python scripts/summarize_results.py \
-  --results-jsonl out/results.jsonl \
-  --out-csv out/summary_by_instance.csv
+python -u pipeline_scripts/2_analysis_runs_and_summary/run_batch.py \
+  --instances-jsonl data/instances_unified.jsonl \
+  --variants gold,mut_unwrap,mut_unsafe \
+  --out-jsonl results/instance_results/results.jsonl \
+  --out-csv results/instance_results/results.csv \
+  --out-dir results/instance_results \
+  --repo-base-dir work/repos \
+  --cargo-target-dir work/cargo-target
 
-python scripts/summarize_totals.py \
-  --results-jsonl out/results.jsonl \
-  --out-csv out/summary_totals.csv
+python pipeline_scripts/2_analysis_runs_and_summary/summarize_results.py \
+  --results-jsonl results/instance_results/results.jsonl \
+  --out-csv results/instance_results/summary_by_instance.csv
+
+python pipeline_scripts/2_analysis_runs_and_summary/summarize_totals.py \
+  --results-jsonl results/instance_results/results.jsonl \
+  --out-csv results/summary_totals.csv
 ```
 
 ## Limitations
 - Test execution currently uses local `cargo test`, not the official Multi-SWE-bench docker harness.
 - Policy checks are proxies and heuristics, not complete formalization of all prose policy constraints.
-- `clippy_ok_count` is 0 across variants in this environment; this should be interpreted as strict `-D warnings` pressure, not necessarily mutation-specific regressions.
+- `aptos-labs/aptos-core` cloning failed in this environment because `git-lfs` is missing; this affects 3 variant rows.
+- `summary_by_instance.csv` currently keys by `instance_id` only, so duplicated IDs across benchmarks can collapse to one row. Use `results/rq_baseline_*.csv` for the full 27-instance baseline summary.

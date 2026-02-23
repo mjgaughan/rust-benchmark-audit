@@ -1,11 +1,11 @@
 instance_id,variant,tests_ok,fmt_ok,clippy_ok,unsafe_count,unwrap_count,notes
-nushell__nushell-13870,gold,True,True,False,0,0,cargo clippy failed
+nushell__nushell-13870,gold,True,True,True,0,0,
 nushell__nushell-13870,mut_unwrap,False,False,False,0,2,cargo fmt failed; cargo clippy failed; unwrap/expect found in added lines
 nushell__nushell-13870,mut_unsafe,True,False,False,1,0,cargo fmt failed; cargo clippy failed; unsafe found in added lines
-nushell__nushell-13357,gold,True,True,False,0,1,cargo clippy failed; unwrap/expect found in added lines
+nushell__nushell-13357,gold,True,True,True,0,1,unwrap/expect found in added lines
 nushell__nushell-13357,mut_unwrap,False,False,False,0,53,cargo fmt failed; cargo clippy failed; unwrap/expect found in added lines
 nushell__nushell-13357,mut_unsafe,False,False,False,47,1,cargo fmt failed; cargo clippy failed; unwrap/expect found in added lines; unsafe found in added lines
-nushell__nushell-12901,gold,True,True,False,0,0,cargo clippy failed
+nushell__nushell-12901,gold,True,True,True,0,0,
 nushell__nushell-12901,mut_unwrap,False,True,False,0,1,cargo clippy failed; unwrap/expect found in added lines
 nushell__nushell-12901,mut_unsafe,True,True,False,1,0,cargo clippy failed; unsafe found in added lines
 nushell__nushell-12118,gold,False,True,False,0,0,cargo clippy failed
@@ -18,26 +18,65 @@ nushell__nushell-11672,gold,False,True,False,0,0,cargo clippy failed
 nushell__nushell-11672,mut_unwrap,False,True,False,0,13,cargo clippy failed; unwrap/expect found in added lines
 nushell__nushell-11672,mut_unsafe,False,True,False,13,0,cargo clippy failed; unsafe found in added lines
 nushell__nushell-11493,gold,False,True,False,0,0,cargo clippy failed
-nushell__nushell-11493,mut_unwrap,False,True,False,0,0,cargo clippy failed
-nushell__nushell-11493,mut_unsafe,False,True,False,0,0,cargo clippy failed
+nushell__nushell-11493,mut_unwrap,False,False,False,0,1,cargo fmt failed; cargo clippy failed; unwrap/expect found in added lines
+nushell__nushell-11493,mut_unsafe,False,False,False,1,0,cargo fmt failed; cargo clippy failed; unsafe found in added lines
 nushell__nushell-11292,gold,False,True,False,0,0,cargo clippy failed
-nushell__nushell-11292,mut_unwrap,False,True,False,0,0,cargo clippy failed
-nushell__nushell-11292,mut_unsafe,False,True,False,0,0,cargo clippy failed
+nushell__nushell-11292,mut_unwrap,False,True,False,0,1,cargo clippy failed; unwrap/expect found in added lines
+nushell__nushell-11292,mut_unsafe,False,True,False,1,0,cargo clippy failed; unsafe found in added lines
 nushell__nushell-11169,gold,False,True,False,0,0,cargo clippy failed
 nushell__nushell-11169,mut_unwrap,False,True,False,0,4,cargo clippy failed; unwrap/expect found in added lines
 nushell__nushell-11169,mut_unsafe,False,True,False,4,0,cargo clippy failed; unsafe found in added lines
 nushell__nushell-10629,gold,False,True,False,0,0,cargo clippy failed
-nushell__nushell-10629,mut_unwrap,False,True,False,0,0,cargo clippy failed
-nushell__nushell-10629,mut_unsafe,False,True,False,0,0,cargo clippy failed
+nushell__nushell-10629,mut_unwrap,False,False,False,0,1,cargo fmt failed; cargo clippy failed; unwrap/expect found in added lines
+nushell__nushell-10629,mut_unsafe,False,False,False,1,0,cargo fmt failed; cargo clippy failed; unsafe found in added lines
 nushell__nushell-10613,gold,False,True,False,0,0,cargo clippy failed
 nushell__nushell-10613,mut_unwrap,False,True,False,0,5,cargo clippy failed; unwrap/expect found in added lines
 nushell__nushell-10613,mut_unsafe,False,True,False,5,0,cargo clippy failed; unsafe found in added lines
 nushell__nushell-10405,gold,False,True,False,0,0,cargo clippy failed
 nushell__nushell-10405,mut_unwrap,False,True,False,0,6,cargo clippy failed; unwrap/expect found in added lines
 nushell__nushell-10405,mut_unsafe,False,False,False,6,0,cargo fmt failed; cargo clippy failed; unsafe found in added lines
-nushell__nushell-10395,gold,False,True,False,0,0,cargo clippy failed
+nushell__nushell-10395,gold,False,True,True,0,0,
 nushell__nushell-10395,mut_unwrap,False,False,False,0,6,cargo fmt failed; cargo clippy failed; unwrap/expect found in added lines
 nushell__nushell-10395,mut_unsafe,False,False,False,6,0,cargo fmt failed; cargo clippy failed; unsafe found in added lines
-nushell__nushell-10381,gold,False,False,False,0,0,cargo fmt failed; cargo clippy failed
+nushell__nushell-10381,gold,False,True,False,0,0,cargo clippy failed
 nushell__nushell-10381,mut_unwrap,False,False,False,0,84,cargo fmt failed; cargo clippy failed; unwrap/expect found in added lines
 nushell__nushell-10381,mut_unsafe,False,False,False,83,0,cargo fmt failed; cargo clippy failed; unsafe found in added lines
+uutils__coreutils-8478,gold,True,True,False,0,0,cargo clippy failed
+uutils__coreutils-8478,mut_unwrap,False,True,False,0,5,cargo clippy failed; unwrap/expect found in added lines
+uutils__coreutils-8478,mut_unsafe,True,True,False,1,0,cargo clippy failed; unsafe found in added lines
+unicode-org__icu4x-6776,gold,False,True,True,0,0,
+unicode-org__icu4x-6776,mut_unwrap,False,True,False,0,3,cargo clippy failed; unwrap/expect found in added lines
+unicode-org__icu4x-6776,mut_unsafe,False,True,False,3,0,cargo clippy failed; unsafe found in added lines
+aptos-labs__aptos-core-16152,gold,False,,,,,
+aptos-labs__aptos-core-16152,mut_unwrap,False,,,,,
+aptos-labs__aptos-core-16152,mut_unsafe,False,,,,,
+nushell__nushell-12901,gold,True,True,True,0,0,
+nushell__nushell-12901,mut_unwrap,False,True,False,0,1,cargo clippy failed; unwrap/expect found in added lines
+nushell__nushell-12901,mut_unsafe,True,True,False,1,0,cargo clippy failed; unsafe found in added lines
+nushell__nushell-12950,gold,True,True,True,0,2,unwrap/expect found in added lines
+nushell__nushell-12950,mut_unwrap,True,False,True,0,3,cargo fmt failed; unwrap/expect found in added lines
+nushell__nushell-12950,mut_unsafe,True,True,True,1,2,unwrap/expect found in added lines; unsafe found in added lines
+nushell__nushell-13246,gold,True,True,True,0,0,
+nushell__nushell-13246,mut_unwrap,False,True,False,0,2,cargo clippy failed; unwrap/expect found in added lines
+nushell__nushell-13246,mut_unsafe,True,True,False,1,0,cargo clippy failed; unsafe found in added lines
+nushell__nushell-13605,gold,True,True,True,0,1,unwrap/expect found in added lines
+nushell__nushell-13605,mut_unwrap,True,True,True,0,2,unwrap/expect found in added lines
+nushell__nushell-13605,mut_unsafe,True,True,True,1,1,unwrap/expect found in added lines; unsafe found in added lines
+nushell__nushell-13831,gold,True,True,True,0,0,
+nushell__nushell-13831,mut_unwrap,True,True,True,0,2,unwrap/expect found in added lines
+nushell__nushell-13831,mut_unsafe,True,True,False,2,0,cargo clippy failed; unsafe found in added lines
+uutils__coreutils-6377,gold,False,False,False,1,0,cargo fmt failed; cargo clippy failed; unsafe found in added lines
+uutils__coreutils-6377,mut_unwrap,False,False,False,1,13,cargo fmt failed; cargo clippy failed; unwrap/expect found in added lines; unsafe found in added lines
+uutils__coreutils-6377,mut_unsafe,False,False,False,10,0,cargo fmt failed; cargo clippy failed; unsafe found in added lines
+uutils__coreutils-6575,gold,False,False,False,0,2,cargo fmt failed; cargo clippy failed; unwrap/expect found in added lines
+uutils__coreutils-6575,mut_unwrap,False,False,False,0,4,cargo fmt failed; cargo clippy failed; unwrap/expect found in added lines
+uutils__coreutils-6575,mut_unsafe,False,False,False,2,2,cargo fmt failed; cargo clippy failed; unwrap/expect found in added lines; unsafe found in added lines
+uutils__coreutils-6682,gold,False,False,False,0,0,cargo fmt failed; cargo clippy failed
+uutils__coreutils-6682,mut_unwrap,False,False,False,0,3,cargo fmt failed; cargo clippy failed; unwrap/expect found in added lines
+uutils__coreutils-6682,mut_unsafe,False,False,False,1,0,cargo fmt failed; cargo clippy failed; unsafe found in added lines
+uutils__coreutils-6690,gold,False,False,False,0,0,cargo fmt failed; cargo clippy failed
+uutils__coreutils-6690,mut_unwrap,False,False,False,0,1,cargo fmt failed; cargo clippy failed; unwrap/expect found in added lines
+uutils__coreutils-6690,mut_unsafe,False,False,False,1,0,cargo fmt failed; cargo clippy failed; unsafe found in added lines
+uutils__coreutils-6731,gold,False,False,False,0,0,cargo fmt failed; cargo clippy failed
+uutils__coreutils-6731,mut_unwrap,False,False,False,0,1,cargo fmt failed; cargo clippy failed; unwrap/expect found in added lines
+uutils__coreutils-6731,mut_unsafe,False,False,False,1,0,cargo fmt failed; cargo clippy failed; unsafe found in added lines
