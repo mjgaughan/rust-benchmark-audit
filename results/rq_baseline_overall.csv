@@ -1,7 +1,0 @@
-rq,slice,n_instances,metric,value
-RQ1b,overall,27,gold_policy_compliant_count,7
-RQ1b,overall,27,gold_policy_violation_count,20
-RQ2,overall/mut_unwrap,27,tests_pass_and_policy_violate_count,3
-RQ2,overall/mut_unwrap,27,tests_pass_count,3
-RQ2,overall/mut_unsafe,27,tests_pass_and_policy_violate_count,8
-RQ2,overall/mut_unsafe,27,tests_pass_count,8
