@@ -220,7 +220,7 @@ def mutate_patch_text(patch_text: str, mode: str) -> Tuple[str, int]:
             new_line, changed = _mutate_unwrap_line(line)
         elif mode == "unsafe":
             new_line, changed = _mutate_unsafe_line(line)
-        elif mode == "panic":
+        elif mode == "panic!":
             new_line, changed = _mutate_panic_line(line, i, lines)
         else:
             raise ValueError(f"Unknown mode: {mode}")

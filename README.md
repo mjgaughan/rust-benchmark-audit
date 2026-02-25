@@ -3,6 +3,7 @@
 - [x] Unify filtered data sets with at least benchmark/instanceID/patch_diff/augmentation/tests/etc. 
 - [x] Refactor analysis pipeline following repo restructuring
 - [x] Add mutation fallback to force non-zero mutation count for every instance.
+- [ ] get pipeline to run e2e simply
 - [ ] Extend policy encodings beyond `unwrap/expect` and `unsafe` to additional project-specific constraints.
   - [ ] Double-check the current policy encodings 
   - [ ] See if it makes sense to add in verification analysis?
