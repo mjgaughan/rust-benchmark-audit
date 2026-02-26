@@ -1,9 +1,14 @@
+/data and /results are the current working directories for 20260226
+- /data contains different requisite data (gs, mutations) for evaluation on the actual evaluation harnesses (which Matt has been running on the CL)
+- /pipeline_scripts does still contain policy check stuff, but e2e pipeline has been paused for the moment 
+- /results contains policy check results and json files from harness evaluationsß
+
 ## TODO
 - [x] Integrate SWE-bench evaluation harness for benchmark-authentic correctness checks (Matt)
 - [x] Unify filtered data sets with at least benchmark/instanceID/patch_diff/augmentation/tests/etc. 
 - [x] Refactor analysis pipeline following repo restructuring
 - [x] Add mutation fallback to force non-zero mutation count for every instance.
-- [ ] get pipeline to run e2e simply
+- [~] get pipeline to run e2e simply
 - [ ] Extend policy encodings beyond `unwrap/expect` and `unsafe` to additional project-specific constraints.
   - [ ] Double-check the current policy encodings 
   - [ ] See if it makes sense to add in verification analysis?
