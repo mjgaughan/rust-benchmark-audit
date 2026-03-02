@@ -1,0 +1,71 @@
+Using swebench local arch: x86_64
+Base image sweb.base.rs.x86_64.33e11622d2:latest already exists, skipping build.
+Base image sweb.base.rs.x86_64.d141c1b022:latest already exists, skipping build.
+Base image sweb.base.rs.x86_64.7d3701dab7:latest already exists, skipping build.
+Base image sweb.base.rs.x86_64.3db6f9beeb:latest already exists, skipping build.
+Base images built successfully.
+No environment images need to be built.
+Running 10 instances...
+nushell__nushell-12950: >>>>> Patch Apply Failed:
+patching file crates/nu-command/src/system/run_external.rs
+patch: **** malformed patch at line 34:          assert_eq!(actual, expected);
+
+
+Check (logs/run_evaluation/SWE-bench_SWE-bench_Multilingual_panic_20260302_061041/panic/nushell__nushell-12950/run_instance.log) for more information.
+nushell__nushell-12901: >>>>> Patch Apply Failed:
+patching file crates/nu-command/src/system/run_external.rs
+patch: **** malformed patch at line 23:              trim_expand_and_apply_arg(&mut process, arg, arg_keep_raw, cwd);
+
+
+Check (logs/run_evaluation/SWE-bench_SWE-bench_Multilingual_panic_20260302_061041/panic/nushell__nushell-12901/run_instance.log) for more information.
+nushell__nushell-13246: >>>>> Patch Apply Failed:
+patching file crates/nu-command/src/filters/find.rs
+patch: **** malformed patch at line 31:                                      &line,
+
+
+Check (logs/run_evaluation/SWE-bench_SWE-bench_Multilingual_panic_20260302_061041/panic/nushell__nushell-13246/run_instance.log) for more information.
+uutils__coreutils-6377: >>>>> Patch Apply Failed:
+patching file .vscode/cspell.dictionaries/workspace.wordlist.txt
+patching file src/uu/env/src/env.rs
+patch: **** malformed patch at line 113:      //   ... * but support for actual INI files, although working, is not intended, nor claimed
+
+
+Check (logs/run_evaluation/SWE-bench_SWE-bench_Multilingual_panic_20260302_061041/panic/uutils__coreutils-6377/run_instance.log) for more information.
+nushell__nushell-13831: >>>>> Patch Apply Failed:
+patching file crates/nu-command/src/strings/split/column.rs
+patch: **** malformed patch at line 120:          // If they didn't provide column names, make up our own
+
+
+Check (logs/run_evaluation/SWE-bench_SWE-bench_Multilingual_panic_20260302_061041/panic/nushell__nushell-13831/run_instance.log) for more information.
+uutils__coreutils-6575: >>>>> Patch Apply Failed:
+patching file src/uu/cksum/src/cksum.rs
+patch: **** malformed patch at line 125:      Ok(())
+
+
+Check (logs/run_evaluation/SWE-bench_SWE-bench_Multilingual_panic_20260302_061041/panic/uutils__coreutils-6575/run_instance.log) for more information.
+uutils__coreutils-6682: >>>>> Patch Apply Failed:
+patching file src/uu/mkdir/src/mkdir.rs
+patch: **** malformed patch at line 18:  #[cfg(any(unix, target_os = "redox"))]
+
+
+Check (logs/run_evaluation/SWE-bench_SWE-bench_Multilingual_panic_20260302_061041/panic/uutils__coreutils-6682/run_instance.log) for more information.
+uutils__coreutils-6731: >>>>> Patch Apply Failed:
+patching file src/uu/tr/src/tr.rs
+patch: **** malformed patch at line 36:  
+
+
+Check (logs/run_evaluation/SWE-bench_SWE-bench_Multilingual_panic_20260302_061041/panic/uutils__coreutils-6731/run_instance.log) for more information.
+All instances run.
+Cleaning cached images...
+Removed 0 images.
+Total instances: 300
+Instances submitted: 10
+Instances completed: 2
+Instances incomplete: 290
+Instances resolved: 2
+Instances unresolved: 0
+Instances with empty patches: 0
+Instances with errors: 8
+Unstopped containers: 0
+Unremoved images: 0
+Report written to panic.SWE-bench_SWE-bench_Multilingual_panic_20260302_061041.json

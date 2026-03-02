@@ -1,0 +1,41 @@
+Dynamic swebench specs patch: patched=3, skipped_rows=0, parser_patched=2, dataset=results/harness_eval_20260302_055806/TuringEnterprises_SWE-Bench-plus-plus_normalized_dataset.jsonl
+Using swebench local arch: x86_64
+Base image sweb.base.rs.x86_64.66f185cf9b:latest already exists, skipping build.
+Base image sweb.base.rs.x86_64.923514b46b:latest already exists, skipping build.
+Base image sweb.base.rs.x86_64.605b300cee:latest already exists, skipping build.
+Base images built successfully.
+No environment images need to be built.
+Running 3 instances...
+unicode-org__icu4x-6776: >>>>> Patch Apply Failed:
+patching file utils/ixdtf/src/parsers/annotations.rs
+patching file utils/ixdtf/src/parsers/timezone.rs
+patch: **** malformed patch at line 100:  fn parse_tz_annotation<'a, T: EncodingType>(
+
+
+Check (logs/run_evaluation/TuringEnterprises_SWE-Bench-plus-plus_panic_20260302_065338/panic/unicode-org__icu4x-6776/run_instance.log) for more information.
+uutils__coreutils-8478: >>>>> Patch Apply Failed:
+patching file src/uu/cp/src/cp.rs
+patch: **** malformed patch at line 113:      dest: &Path,
+
+
+Check (logs/run_evaluation/TuringEnterprises_SWE-Bench-plus-plus_panic_20260302_065338/panic/uutils__coreutils-8478/run_instance.log) for more information.
+aptos-labs__aptos-core-16152: >>>>> Patch Apply Failed:
+patching file third_party/move/move-bytecode-verifier/src/struct_defs.rs
+patch: **** malformed patch at line 54:              T::Struct(sh_idx) => {
+
+
+Check (logs/run_evaluation/TuringEnterprises_SWE-Bench-plus-plus_panic_20260302_065338/panic/aptos-labs__aptos-core-16152/run_instance.log) for more information.
+All instances run.
+Cleaning cached images...
+Removed 0 images.
+Total instances: 3
+Instances submitted: 3
+Instances completed: 0
+Instances incomplete: 0
+Instances resolved: 0
+Instances unresolved: 0
+Instances with empty patches: 0
+Instances with errors: 3
+Unstopped containers: 0
+Unremoved images: 0
+Report written to panic.TuringEnterprises_SWE-Bench-plus-plus_panic_20260302_065338.json

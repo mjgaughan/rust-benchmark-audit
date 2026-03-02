@@ -1,0 +1,44 @@
+/home/cc/rust-benchmark-audit/.venv/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.6.3) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+2026-03-02 06:34:14,845 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-02 06:34:14,890 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/SWE-bench/SWE-bench_Multilingual/2b7aced941b4873e9cad3e76abbae93f481d1beb/README.md "HTTP/1.1 200 OK"
+2026-03-02 06:34:14,951 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual/resolve/2b7aced941b4873e9cad3e76abbae93f481d1beb/SWE-bench_Multilingual.py "HTTP/1.1 404 Not Found"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-03-02 06:34:14,951 - huggingface_hub.utils._http - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-03-02 06:34:15,208 - httpx - INFO - HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/SWE-bench/SWE-bench_Multilingual/SWE-bench/SWE-bench_Multilingual.py "HTTP/1.1 404 Not Found"
+2026-03-02 06:34:15,271 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/datasets/SWE-bench/SWE-bench_Multilingual/revision/2b7aced941b4873e9cad3e76abbae93f481d1beb "HTTP/1.1 200 OK"
+2026-03-02 06:34:15,329 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual/resolve/2b7aced941b4873e9cad3e76abbae93f481d1beb/.huggingface.yaml "HTTP/1.1 404 Not Found"
+2026-03-02 06:34:15,579 - httpx - INFO - HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=SWE-bench/SWE-bench_Multilingual "HTTP/1.1 200 OK"
+2026-03-02 06:34:15,643 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/datasets/SWE-bench/SWE-bench_Multilingual/tree/2b7aced941b4873e9cad3e76abbae93f481d1beb/data?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-02 06:34:15,703 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/datasets/SWE-bench/SWE-bench_Multilingual/tree/2b7aced941b4873e9cad3e76abbae93f481d1beb?recursive=false&expand=false "HTTP/1.1 200 OK"
+2026-03-02 06:34:15,766 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual/resolve/2b7aced941b4873e9cad3e76abbae93f481d1beb/dataset_infos.json "HTTP/1.1 404 Not Found"
+2026-03-02 06:34:15,950 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-02 06:34:15,995 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/SWE-bench/SWE-bench_Multilingual/2b7aced941b4873e9cad3e76abbae93f481d1beb/README.md "HTTP/1.1 200 OK"
+2026-03-02 06:34:16,058 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual/resolve/2b7aced941b4873e9cad3e76abbae93f481d1beb/SWE-bench_Multilingual.py "HTTP/1.1 404 Not Found"
+2026-03-02 06:34:16,114 - httpx - INFO - HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/SWE-bench/SWE-bench_Multilingual/SWE-bench/SWE-bench_Multilingual.py "HTTP/1.1 404 Not Found"
+2026-03-02 06:34:16,184 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual/resolve/2b7aced941b4873e9cad3e76abbae93f481d1beb/.huggingface.yaml "HTTP/1.1 404 Not Found"
+2026-03-02 06:34:16,253 - httpx - INFO - HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=SWE-bench/SWE-bench_Multilingual "HTTP/1.1 200 OK"
+2026-03-02 06:34:16,324 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/datasets/SWE-bench/SWE-bench_Multilingual/resolve/2b7aced941b4873e9cad3e76abbae93f481d1beb/dataset_infos.json "HTTP/1.1 404 Not Found"
+
+Evaluation:   0%|          | 0/10 [00:00<?, ?it/s, error=0, ✓=0, ✖=0]
+Evaluation:   0%|          | 0/10 [02:36<?, ?it/s, ✓=1, ✖=0, error=0]
+Evaluation:  10%|█         | 1/10 [02:36<23:29, 156.56s/it, ✓=1, ✖=0, error=0]
+Evaluation:  10%|█         | 1/10 [02:37<23:29, 156.56s/it, ✓=2, ✖=0, error=0]
+Evaluation:  20%|██        | 2/10 [02:37<08:39, 64.99s/it, ✓=2, ✖=0, error=0] 
+Evaluation:  20%|██        | 2/10 [06:27<08:39, 64.99s/it, ✓=3, ✖=0, error=0]
+Evaluation:  30%|███       | 3/10 [06:27<16:21, 140.19s/it, ✓=3, ✖=0, error=0]
+Evaluation:  30%|███       | 3/10 [06:31<16:21, 140.19s/it, ✓=4, ✖=0, error=0]
+Evaluation:  40%|████      | 4/10 [06:31<08:39, 86.59s/it, ✓=4, ✖=0, error=0] 
+Evaluation:  40%|████      | 4/10 [08:09<08:39, 86.59s/it, ✓=5, ✖=0, error=0]
+Evaluation:  50%|█████     | 5/10 [08:09<07:33, 90.63s/it, ✓=5, ✖=0, error=0]
+Evaluation:  50%|█████     | 5/10 [09:49<07:33, 90.63s/it, ✓=6, ✖=0, error=0]
+Evaluation:  60%|██████    | 6/10 [09:49<06:15, 93.95s/it, ✓=6, ✖=0, error=0]
+Evaluation:  60%|██████    | 6/10 [10:23<06:15, 93.95s/it, ✓=7, ✖=0, error=0]
+Evaluation:  70%|███████   | 7/10 [10:23<03:43, 74.42s/it, ✓=7, ✖=0, error=0]
+Evaluation:  70%|███████   | 7/10 [11:16<03:43, 74.42s/it, ✓=8, ✖=0, error=0]
+Evaluation:  80%|████████  | 8/10 [11:16<02:14, 67.30s/it, ✓=8, ✖=0, error=0]
+Evaluation:  80%|████████  | 8/10 [11:45<02:14, 67.30s/it, ✓=9, ✖=0, error=0]
+Evaluation:  90%|█████████ | 9/10 [11:45<00:55, 55.57s/it, ✓=9, ✖=0, error=0]
+Evaluation:  90%|█████████ | 9/10 [12:33<00:55, 55.57s/it, ✓=10, ✖=0, error=0]
+Evaluation: 100%|██████████| 10/10 [12:33<00:00, 53.16s/it, ✓=10, ✖=0, error=0]
+Evaluation: 100%|██████████| 10/10 [12:33<00:00, 75.36s/it, ✓=10, ✖=0, error=0]

@@ -1,0 +1,11 @@
+/home/cc/rust-benchmark-audit/.venv/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.6.3) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+
+Evaluation:   0%|          | 0/3 [00:00<?, ?it/s, error=0, ✓=0, ✖=0]
+Evaluation:   0%|          | 0/3 [02:16<?, ?it/s, ✓=0, ✖=0, error=1]
+Evaluation:  33%|███▎      | 1/3 [02:16<04:33, 136.82s/it, ✓=0, ✖=0, error=1]
+Evaluation:  33%|███▎      | 1/3 [02:18<04:33, 136.82s/it, ✓=0, ✖=0, error=2]
+Evaluation:  67%|██████▋   | 2/3 [02:18<00:57, 57.28s/it, ✓=0, ✖=0, error=2] 
+Evaluation:  67%|██████▋   | 2/3 [03:36<00:57, 57.28s/it, ✓=0, ✖=0, error=3]
+Evaluation: 100%|██████████| 3/3 [03:36<00:00, 66.76s/it, ✓=0, ✖=0, error=3]
+Evaluation: 100%|██████████| 3/3 [03:36<00:00, 72.16s/it, ✓=0, ✖=0, error=3]

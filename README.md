@@ -152,6 +152,42 @@ Note:
 - This run used the `heuristic` mutation style.
 - For stronger pilot evidence, rerun with `--mutation-style adversarial` (recommended for unsafe/panic stress tests).
 
+## Claude Override Harness Run (2026-03-02 Linux Server)
+Run command used:
+```bash
+python3 -u pipeline_scripts/2_analysis_runs_and_summary/bare_run_all.py \
+  --instances-jsonl data/instances_unified.jsonl \
+  --mutations gs,unwrap,unsafe,panic \
+  --external-predictions-commit 04f34fc \
+  --require-external-predictions \
+  --run-eval \
+  --max-workers 2 \
+  --docker-host unix:///var/run/docker.sock \
+  --eval-output-dir results/harness_eval_20260302_055806
+```
+
+Primary artifacts:
+- `results/harness_eval_20260302_055806/evaluation_runs.csv`
+- `results/harness_eval_20260302_055806/evaluation_runs.jsonl`
+- `results/harness_outcomes_20260302_055806_compact.csv`
+- `results/harness_resolution_20260302_055806.csv`
+- `results/20260302_055806_harness_summary.md`
+- `results/e2e_20260302_055806.log`
+
+Job-level outcomes (`12` total):
+- `4` skipped: `ByteDance-Seed/Multi-SWE-bench` (`gs/panic/unsafe/unwrap`) due known dataset-loader incompatibility.
+- `8` completed with `status=ok` and `returncode=0` (Multilingual + SWE-Bench++).
+- `0` runner-level failures.
+
+Resolved reports by benchmark+mutation:
+- Multilingual: `gs=10/10`, `unsafe=10/10`, `unwrap=10/10`, `panic=2/10`.
+- SWE-Bench++: `gs=3/3`, `unsafe=3/3`, `unwrap=3/3`, `panic=0/3`.
+
+Important caveat:
+- External Claude `panic` patches from commit `04f34fc` are partially malformed unified diffs for this harness flow.
+- Evidence: patch-apply errors (`patch: **** malformed patch at line ...`) in panic stderr logs.
+- Interpretation: `gs/unsafe/unwrap` from this run are usable; `panic` is incomplete and should be rerun with generated mutations.
+
 Job-level outcomes (`12` total):
 - `4` skipped: `ByteDance-Seed/Multi-SWE-bench` (`gs/panic/unsafe/unwrap`) due known dataset-loader incompatibility.
 - `8` succeeded: `SWE-bench/SWE-bench_Multilingual` and `TuringEnterprises/SWE-Bench-plus-plus` (all four mutations each).

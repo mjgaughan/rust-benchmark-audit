@@ -1,0 +1,13 @@
+benchmark,mutation,status,submitted,resolved,unresolved,note
+ByteDance-Seed/Multi-SWE-bench,gs,skipped,14,0,14,Known dataset loader schema incompatibility with current swebench/datasets versions
+ByteDance-Seed/Multi-SWE-bench,panic,skipped,14,0,14,Known dataset loader schema incompatibility with current swebench/datasets versions
+ByteDance-Seed/Multi-SWE-bench,unsafe,skipped,14,0,14,Known dataset loader schema incompatibility with current swebench/datasets versions
+ByteDance-Seed/Multi-SWE-bench,unwrap,skipped,14,0,14,Known dataset loader schema incompatibility with current swebench/datasets versions
+SWE-bench/SWE-bench_Multilingual,gs,ok,10,10,0,
+SWE-bench/SWE-bench_Multilingual,panic,ok,10,2,8,
+SWE-bench/SWE-bench_Multilingual,unsafe,ok,10,10,0,
+SWE-bench/SWE-bench_Multilingual,unwrap,ok,10,10,0,
+TuringEnterprises/SWE-Bench-plus-plus,gs,ok,3,3,0,"Normalized local dataset rows=3, inferred_versions=3"
+TuringEnterprises/SWE-Bench-plus-plus,panic,ok,3,0,3,"Normalized local dataset rows=3, inferred_versions=3"
+TuringEnterprises/SWE-Bench-plus-plus,unsafe,ok,3,3,0,"Normalized local dataset rows=3, inferred_versions=3"
+TuringEnterprises/SWE-Bench-plus-plus,unwrap,ok,3,3,0,"Normalized local dataset rows=3, inferred_versions=3"

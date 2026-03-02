@@ -1,0 +1,22 @@
+Using swebench local arch: x86_64
+Base image sweb.base.rs.x86_64.33e11622d2:latest already exists, skipping build.
+Base image sweb.base.rs.x86_64.d141c1b022:latest already exists, skipping build.
+Base image sweb.base.rs.x86_64.7d3701dab7:latest already exists, skipping build.
+Base image sweb.base.rs.x86_64.3db6f9beeb:latest already exists, skipping build.
+Base images built successfully.
+No environment images need to be built.
+Running 10 instances...
+All instances run.
+Cleaning cached images...
+Removed 0 images.
+Total instances: 300
+Instances submitted: 10
+Instances completed: 10
+Instances incomplete: 290
+Instances resolved: 10
+Instances unresolved: 0
+Instances with empty patches: 0
+Instances with errors: 0
+Unstopped containers: 0
+Unremoved images: 0
+Report written to gs.SWE-bench_SWE-bench_Multilingual_gs_20260302_055806.json
