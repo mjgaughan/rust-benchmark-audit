@@ -1,12 +1,0 @@
-nohup: ignoring input
-Loaded instances: 27
-Mutated rows: 108
-Prediction jobs: 12
-Mutated output: results/mutated_instances.jsonl
-Policy output: results/policy_check_results.jsonl
-/home/cc/rust-benchmark-audit/.venv/lib/python3.10/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.6.3) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
-  warnings.warn(
-Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-Generating test split:   0%|          | 0/500 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 500/500 [00:00<00:00, 4966.00 examples/s]Generating test split: 100%|██████████| 500/500 [00:00<00:00, 4932.11 examples/s]
-Evaluation runs: 12
-Evaluation failures: 0
